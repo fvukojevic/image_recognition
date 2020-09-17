@@ -5,7 +5,7 @@
                 <input class="form-control" type="text" placeholder="Paste image url" v-model="src">
                 <br>
                 <a class="btn btn-outline-primary" v-if="src" href="#" @click="addImage">show image</a>
-                <a style="margin-left: 10px" class="btn btn-outline-primary" v-if="src" href="#"
+                <a v-if="showed" style="margin-left: 10px" class="btn btn-outline-primary" href="#"
                    @click="recognizeImage">recognize image</a>
             </div>
         </div>
@@ -41,7 +41,8 @@
                 img: null,
                 src: null,
                 data: null,
-                process: false
+                process: false,
+                showed: false,
             }
         },
         methods: {
@@ -51,6 +52,7 @@
                 }
                 this.img = new Image();
                 this.img.src = this.src;
+                this.showed = true;
             },
             recognizeImage() {
                 this.process = true;

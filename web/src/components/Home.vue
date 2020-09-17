@@ -14,11 +14,12 @@
             <div v-if="img" class="canvas">
                 <img class="image_size" :src="img.src" alt="">
             </div>
-            <br><br>
+        </div>
+        <div class="col-md-6 offset-3" style="margin-top: 30px;">
             <div v-if="process">
                 <div v-if="data">
-                    <ul>
-                        <li v-for="res in data" v-bind:key="res.id">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="res in data" v-bind:key="res.id">
                             {{res[0]}}: {{ (res[1] * 100).toFixed(1)}} %
                         </li>
                     </ul>

@@ -8,14 +8,18 @@
                 <a style="margin-left: 10px" class="btn btn-outline-primary" v-if="src" href="#"
                    @click="recognizeImage">recognize image</a>
             </div>
-            <div v-if="img">
-                <img class="image_size" :src="this.img.src" alt="">
+        </div>
+        <br><br>
+        <div class="col-md-12">
+            <div v-if="img" class="canvas">
+                <img class="image_size" :src="img.src" alt="">
             </div>
+            <br><br>
             <div v-if="process">
                 <div v-if="data">
                     <ul>
-                        <li v-for="(value, key) in data" v-bind:key="key">
-                            {{key}}: {{ (value * 100).toFixed(1)}} %
+                        <li v-for="res in data" v-bind:key="res.id">
+                            {{res[0]}}: {{ (res[1] * 100).toFixed(1)}} %
                         </li>
                     </ul>
                 </div>
@@ -42,7 +46,7 @@
         },
         methods: {
             addImage() {
-                if(this.process) {
+                if (this.process) {
                     this.process = false;
                 }
                 this.img = new Image();
@@ -50,10 +54,19 @@
             },
             recognizeImage() {
                 this.process = true;
+                if (this.data !== null) {
+                    this.data = null;
+                }
                 this.$http.post('/classify', {
                     url: this.img.src
                 }).then(result => {
-                    this.data = result.data;
+                    let response = [];
+                    for (let key in result.data) {
+                        response.push([key, result.data[key]])
+                    }
+                    this.data = response.sort((a, b) => {
+                        return b[1] - a[1]
+                    });
                 }).catch(error => {
                     console.log(error)
                 })
@@ -66,7 +79,19 @@
 </script>
 
 <style>
+    .canvas {
+        height: 300px;
+        width: 300px;
+        border: 1px solid black;
+        display: flex;
+        margin: 0 auto;
+        text-align: center;
+    }
+
     .image_size {
+        height: 100%;
+        width: 100%;
         object-fit: contain;
+        object-position: center;
     }
 </style>

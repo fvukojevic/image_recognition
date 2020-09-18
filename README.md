@@ -12,6 +12,14 @@ model I am using is not that advanced and it is public on TensorFlow website
 
 ## Project Screenshots
 
+### Example 1
+
+![alt text](https://github.com/fvukojevic/image_recognition/blob/master/project_imgs/example.png?raw=true)
+
+### Example 2
+
+![alt text](https://github.com/fvukojevic/image_recognition/blob/master/project_imgs/example2.png?raw=true)
+
 ## Project setup
 
 This app is very easy to install. It is using dockers so they are a prerequisite

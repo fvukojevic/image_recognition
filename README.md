@@ -54,3 +54,5 @@ I already created few api's and I wanted to demonstrate a very simple app that c
 and then shows some data in browser.
 
 App is very simple and only created for fun.
+
+Live Demo: https://image-recognition.frans.thedev.id/
